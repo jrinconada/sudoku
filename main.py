@@ -1,4 +1,5 @@
 import generator
+import validator
 import output
 
 def usage():
@@ -11,4 +12,7 @@ def usage():
     EXAMPLES: 
         - 20 sudokus saved in a text file: main.py 20 -o sudokus.txt"""
 
-output.show(generator.generate())
+sudoku = generator.generate()
+output.show(sudoku)
+valid = validator.validate(sudoku)
+print('Valid sudoku' if valid else 'Invalid sudoku')
