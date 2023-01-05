@@ -7,4 +7,4 @@ Sorry **not** for **playing** XD. :stuck_out_tongue_closed_eyes:
 - [Generator](#generator)  
 - [Solver](#solver)
 - [Validator](#validator)
-- [Input / Output](#inpuntoutput)
+- [Output](#output)
