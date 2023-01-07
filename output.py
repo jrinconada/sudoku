@@ -1,9 +1,19 @@
 
 def show(sudoku):
+    print()
+    x = 1
     for row in sudoku:
-        print('|', end='')
+        y = 1    
         for column in row:
-            print(column, end='|')
+            print(column, end=' ')
+            if y == 3:
+                print(' ', end=' ')
+                y = 0
+            y = y + 1
+        if x == 3:
+            print()
+            x = 0
+        x = x + 1
         print()
 
 def save(sudoku):

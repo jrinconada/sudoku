@@ -31,7 +31,7 @@ def valid(items):
         numbers.remove(number)
     return len(numbers) == 0
 
-def valid(sudoku, number, x, y):
+def possible(sudoku, number, x, y):
     """ Given a sudoku, a number and position, return if that number can be in that position. """
     for i in range(9):
         if number == sudoku[x][i]: # Check row
@@ -40,5 +40,5 @@ def valid(sudoku, number, x, y):
             return False
         if number == sudoku[i + x % 3][i + y % 3]: # Check square
             return False
-    return True
+        return True
     
