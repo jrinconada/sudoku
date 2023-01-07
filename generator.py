@@ -14,10 +14,10 @@ def generate(n=9):
 def fill(sudoku):
     for x in range(9):
         row = list(range(1, 10))
-        random.shuffle(row)        
+        random.shuffle(row)
         for y in range(9):
             for n in row:
-                if validator.possible(sudoku, n, x, y):
+                if x == 0 or validator.possible(sudoku, n, x, y): # No need to check first row
                     sudoku[x][y] = n
                     row.remove(n)
                     break
