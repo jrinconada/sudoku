@@ -34,11 +34,11 @@ def valid(items):
 def possible(sudoku, number, x, y):
     """ Given a sudoku, a number and position, return if that number can be in that position. """
     for i in range(9):
-        if number == sudoku[x][i]: # Check row
+        if number == sudoku[i][y]: # Check row
             return False
-        if number == sudoku[i][y]: # Check column
+        if number == sudoku[x][i]: # Check column
             return False
-        if number == sudoku[i + x % 3][i + y % 3]: # Check square
+        if number == sudoku[i % 3 + x // 3][i % 3 + y // 3]: # Check square    
             return False
-        return True
+    return True
     
