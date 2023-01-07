@@ -23,6 +23,7 @@ def validate(sudoku):
     return True
     
 def valid(items):
+    """ Given a row, colum or square, return if they are valid. """
     numbers = set(range(1, len(items) + 1))
     for number in items:
         if not number in numbers:
@@ -30,4 +31,14 @@ def valid(items):
         numbers.remove(number)
     return len(numbers) == 0
 
-        
+def valid(sudoku, number, x, y):
+    """ Given a sudoku, a number and position, return if that number can be in that position. """
+    for i in range(9):
+        if number == sudoku[x][i]: # Check row
+            return False
+        if number == sudoku[i][y]: # Check column
+            return False
+        if number == sudoku[i + x % 3][i + y % 3]: # Check square
+            return False
+    return True
+    
