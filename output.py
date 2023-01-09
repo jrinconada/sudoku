@@ -25,6 +25,6 @@ def save(sudoku):
 def write(location, data):
     """ Given a file path and some data, saves the data to the file.
         Automatically creates the file if it does not exit and overwrites the content if there is something """
-    with open(location, 'w') as file:
+    with open(location, 'a') as file:
         file.write(data)
             
