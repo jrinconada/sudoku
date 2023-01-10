@@ -12,7 +12,7 @@ def generate(n = 9, display_progress = False):
     
 def fill(sudoku, x = 0, y = 0, display_progress = False):
     global fails
-    possibilities = list(range(1, 10))
+    possibilities = list(range(1, len(sudoku) + 1))    
     random.shuffle(possibilities)    
     for number in possibilities:
         if display_progress:
@@ -32,3 +32,12 @@ def fill(sudoku, x = 0, y = 0, display_progress = False):
             if display_progress:
                 output.delete(x, y)
     return False # If we are here, there was no possible number to put in that space, so we need to go back to the previous step
+
+def removeNumber(sudoku):    
+    x = random.randint(0, len(sudoku) - 1)
+    y = random.randint(0, len(sudoku) - 1)
+    while sudoku[y][x] == 0:
+        x = random.randint(0, len(sudoku) - 1)
+        y = random.randint(0, len(sudoku) - 1)
+    sudoku[y][x] = 0
+    

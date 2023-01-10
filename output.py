@@ -9,7 +9,10 @@ def show(sudoku):
     for row in sudoku:
         y = 1
         for column in row:
-            print(column, end=' ')
+            if column == 0:
+                print(' ', end=' ')
+            else:
+                print(column, end=' ')
             if y == 3:
                 print('  ', end='')
                 y = 0
