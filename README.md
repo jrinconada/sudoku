@@ -3,7 +3,7 @@ This project is meant to **generate** *Sudokus* and can **solve** and **validate
 
 Sorry **not** for **playing** XD. :stuck_out_tongue_closed_eyes:
 
-![](generation.mp4)
+![](generation.gif)
 
 ## Parts
 - [Generator](#generator)  
