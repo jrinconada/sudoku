@@ -4,8 +4,11 @@
 Sorry, **not** for **playing** XD. :stuck_out_tongue_closed_eyes:
 
 ## Generator
-Creating a list of random numbers from *1* to *9* and trying them to generate a grid following *sudoku* rules using a *backtracking* and *recursion*.
+Creating a list of random numbers from *1* to *9* and trying them to generate a grid following *sudoku* rules using a **backtracking** and **recursion**.
+
 ![](generation.gif)
+
+The code:
 
 ```python
 def fill(sudoku, x = 0, y = 0):    
@@ -15,17 +18,20 @@ def fill(sudoku, x = 0, y = 0):
         if validator.possible(sudoku, number, x, y):
             sudoku[y][x] = number            
             if y == len(sudoku) - 1 and x == len(sudoku[0]) - 1:
-                return True # If we arrive at the end of the sudoku, it means that all cells are filled            
-            filled = fill(sudoku, x + 1 if x < len(sudoku[y]) - 1 else 0, y + 1 if x == len(sudoku[y]) - 1 else y) # Recursive call
+                return True # End of the sudoku, all cells are filled            
+            filled = fill(sudoku, x + 1 if x < len(sudoku[y]) - 1 else 0, y + 1 if x == len(sudoku[y]) - 1 else y) # Recursion
             if filled:
-                return True # If filled is true, it means that one of the steps have filled the last cell
+                return True # If filled is true, one of the steps filled the last cell
             sudoku[y][x] = 0    
-    return False # If we are here, there was no possible number to put in that space, so we need to go back to the previous step (backtracking)
+    return False # No possible number was able to fill this space, so we need to go back to the previous step (backtracking)
 ```
 
 ## Solver
-Trying the numbers from *1* to *9* to fill the grid following *sudoku* rules using a *backtracking* and *recursion*.
+Trying the numbers from *1* to *9* to fill the grid following *sudoku* rules using a **backtracking** and **recursion**.
+
 ![](solving.gif)
+
+The code:
 
 ```python
 def solve(sudoku):
