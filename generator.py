@@ -25,6 +25,7 @@ def fill(sudoku, x = 0, y = 0, display_progress = False):
             if filled:
                 return True # If filled is true, it means that one of the steps have filled the last cell
             sudoku[y][x] = 0
+            fails = fails + 1
             if display_progress:
                 output.delete(x, y)
         else:
