@@ -7,8 +7,9 @@ import solver
 NUMBER_OF_SUDOKUS = 1
 SHOW_GENERATION_PROCESS = False
 SHOW_SOLVING_PROCESS = False
+FIND_ALL_SOLUTIONS = True
 SIZE = 9 # Must be a perfect square: 4, 9, 16 ...
-SPACES = 24 # 24 beginner, 53 expert (for a 9x9 grid)
+SPACES = 50 # 24 beginner, 53 expert (for a 9x9 grid)
 
 total = 0
 start = time.time()
@@ -29,10 +30,10 @@ for i in range(NUMBER_OF_SUDOKUS):
     output.save(sudoku)
 
     # Solve sudoku
-    solver.solve(sudoku, SHOW_SOLVING_PROCESS)    
+    solver.solve(sudoku, SHOW_SOLVING_PROCESS, FIND_ALL_SOLUTIONS)    
     if not SHOW_SOLVING_PROCESS:
         output.show(sudoku)
-    print('\n\nSudoku solved. It took', solver.fails, 'tries.')
+    print('\n\nSudoku with',SPACES , 'spaces solved. It took', solver.fails, 'tries and has', solver.solutions, 'solutions.')
 
 # Show summary
 print(NUMBER_OF_SUDOKUS, 'sudoku generated and solved in', round(time.time() - start), 'seconds.')
