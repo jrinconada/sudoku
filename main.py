@@ -6,8 +6,8 @@ import solver
 
 NUMBER_OF_SUDOKUS = 1
 SHOW_GENERATION_PROCESS = False
-SHOW_SOLVING_PROCESS = True
-SIZE = 9
+SHOW_SOLVING_PROCESS = False
+SIZE = 9 # Must be a perfect square: 4, 9, 16 ...
 SPACES = 24 # 24 beginner, 53 expert (for a 9x9 grid)
 
 total = 0
