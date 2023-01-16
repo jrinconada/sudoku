@@ -9,7 +9,7 @@ SHOW_GENERATION_PROCESS = False
 SHOW_SOLVING_PROCESS = False
 FIND_ALL_SOLUTIONS = True
 SIZE = 9 # Must be a perfect square: 4, 9, 16 ...
-SPACES = 50 # 24 beginner, 53 expert (for a 9x9 grid)
+SPACES = 24 # 24 beginner, 37 easy, 50 medium, 53 hard, 59 evil (for a 9x9 grid)
 
 total = 0
 start = time.time()
@@ -34,6 +34,7 @@ for i in range(NUMBER_OF_SUDOKUS):
     if not SHOW_SOLVING_PROCESS:
         output.show(sudoku)
     print('\n\nSudoku with',SPACES , 'spaces solved. It took', solver.fails, 'tries and has', solver.solutions, 'solutions.')
+    solver.solutions = 0
 
 # Show summary
 print(NUMBER_OF_SUDOKUS, 'sudoku generated and solved in', round(time.time() - start), 'seconds.')
