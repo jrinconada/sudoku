@@ -11,11 +11,12 @@ def validate(sudoku):
             return False
     
     # Square validation
-    for n in range(0,7,3):
-        for m in range(0,7,3):
+    square_size = int(len(sudoku) ** (1/2))
+    for n in range(0, len(sudoku) - 2, square_size):
+        for m in range(0, len(sudoku) - 2, square_size):
             square = []
-            for i in range(3):
-                for j in range(3):
+            for i in range(square_size):
+                for j in range(square_size):
                     square.append(sudoku[i+n][j+m])
             if not valid(square):
                 return False
@@ -33,12 +34,13 @@ def valid(items):
 
 def possible(sudoku, number, x, y):
     """ Given a sudoku, a number and position, return if that number can be in that position. """
+    square_size = int(len(sudoku) ** (1/2))
     for i in range(len(sudoku)):
         if number == sudoku[y][i]: # Check row
             return False
         if number == sudoku[i][x]: # Check column
             return False
-        if number == sudoku[i // 3 + y // 3 * 3][i % 3 + x // 3 * 3]: # Check square
+        if number == sudoku[i // square_size + y // square_size * square_size][i % square_size + x // square_size * square_size]: # Check square
             return False
     return True
     
