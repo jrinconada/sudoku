@@ -26,6 +26,12 @@ def fill(sudoku, x = 0, y = 0):
     return False # No possible number was able to fill this space, so we need to go back to the previous step (backtracking)
 ```
 
+### Variations
+After a sudoku is created around 5 millions other can be generated applying variations like:
+- Swaping numbers 
+- Swaping rows or columns (equivalent to flipping / mirroring)
+- Rolling the grid (rotation of 90, 180 or 270 degress)
+
 ## Solver
 Trying the numbers from *1* to *9* to fill the grid following *sudoku* rules using a **backtracking** and **recursion**.
 
