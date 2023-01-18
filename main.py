@@ -27,6 +27,7 @@ for i in range(NUMBER_OF_SUDOKUS):
     generator.swap_numbers(sudoku, 1, 9)
     generator.swap_rows(sudoku, 0, 1)
     generator.swap_columns(sudoku, 0, 1)
+    generator.apply_varitiations(sudoku)
     output.show(sudoku)
     valid = validator.validate(sudoku)
     print('\n\nThis is a', 'valid' if valid else 'invalid', 'sudoku.')
