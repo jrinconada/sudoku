@@ -30,7 +30,7 @@ def fill(sudoku, x = 0, y = 0):
 After a sudoku is created around 5 millions other can be generated applying variations like:
 - Swaping numbers 
 - Swaping rows or columns (equivalent to flipping / mirroring)
-- Rolling the grid (rotation of 90, 180 or 270 degress)
+- Rolling the grid (rotation of 90 or 270 degress) (180 rotation is equivalent to flipping columns)
 
 ## Solver
 Trying the numbers from *1* to *9* to fill the grid following *sudoku* rules using a **backtracking** and **recursion**.
