@@ -7,7 +7,7 @@ import solver
 NUMBER_OF_SUDOKUS = 1
 SHOW_GENERATION_PROCESS = False
 SHOW_SOLVING_PROCESS = False
-FIND_ALL_SOLUTIONS = True
+FIND_ALL_SOLUTIONS = False
 SIZE = 9 # Must be a perfect square: 4, 9, 16 ...
 SPACES = 24 # 24 beginner, 37 easy, 50 medium, 53 hard, 59 evil (for a 9x9 grid)
 
@@ -23,9 +23,17 @@ for i in range(NUMBER_OF_SUDOKUS):
     total = total + generator.fails
     print('\n\nThis is a', 'valid' if valid else 'invalid', 'sudoku.', generator.fails, 'failed tries. Average:', total / (i + 1), 'tries. Total:', total, 'tries.')
 
+    # Apply variations
+    generator.swap_numbers(sudoku, 1, 9)
+    generator.swap_rows(sudoku, 0, 1)
+    generator.swap_columns(sudoku, 0, 1)
+    output.show(sudoku)
+    valid = validator.validate(sudoku)
+    print('\n\nThis is a', 'valid' if valid else 'invalid', 'sudoku.')
+
     # Remove numbers
     for s in range(SPACES):    
-        generator.removeNumber(sudoku)
+        generator.remove_number(sudoku)
     output.show(sudoku)
     output.save(sudoku)
 
