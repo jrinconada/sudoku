@@ -34,11 +34,31 @@ def fill(sudoku, x = 0, y = 0, display_progress = False):
                 output.delete(x, y)
     return False # If we are here, there was no possible number to put in that space, so we need to go back to the previous step
 
-def removeNumber(sudoku):    
+def remove_number(sudoku):    
     x = random.randint(0, len(sudoku) - 1)
     y = random.randint(0, len(sudoku) - 1)
     while sudoku[y][x] == 0:
         x = random.randint(0, len(sudoku) - 1)
         y = random.randint(0, len(sudoku) - 1)
     sudoku[y][x] = 0
+    
+def swap_numbers(sudoku, a, b):
+    for y in range(len(sudoku)):
+        for x in range(len(sudoku[0])):
+            if sudoku[y][x] == a:
+                sudoku[y][x] = b
+            elif sudoku[y][x] == b:
+                sudoku[y][x] = a
+
+def swap_rows(sudoku, y1, y2):
+    row1 = sudoku[y1].copy()
+    sudoku[y1] = sudoku[y2]
+    sudoku[y2] = row1
+
+def swap_columns(sudoku, x1, x2):
+    for y in range(len(sudoku)):
+        column1 = sudoku[y][x1]
+        sudoku[y][x1] = sudoku[y][x2]
+        sudoku[y][x2] = column1
+
     
