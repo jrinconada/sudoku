@@ -61,4 +61,27 @@ def swap_columns(sudoku, x1, x2):
         sudoku[y][x1] = sudoku[y][x2]
         sudoku[y][x2] = column1
 
-    
+def transpose(sudoku):
+    temp = [row[:] for row in sudoku] # Deep copy of sudoku
+    for i in range(len(sudoku)):
+        for j in range(len(sudoku[0])):
+            sudoku[i][j] = temp[j][i]
+
+def roll(sudoku):
+    """Counterclockwise 90º rotation"""
+    temp = [row[:] for row in sudoku] # Deep copy of sudoku
+    for i in range(len(sudoku)):
+        for j in range(len(sudoku[i])):
+            sudoku[i][j] = temp[j][len(sudoku[i]) - 1 - i]
+
+def apply_varitiations(sudoku):
+    # Transpose or not ?
+    if random.choice([True, False]):
+        print('Transposing...')
+        transpose(sudoku)
+    # Roll 0º, 90º, 180º, 270º ?
+    degrees = random.choice([0, 90, 180, 270])
+    if degrees != 0: 
+        print('Rolling', degrees, 'degrees...')
+    for rolling_times in range(degrees // 90):
+        roll(sudoku)
