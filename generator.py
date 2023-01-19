@@ -75,6 +75,23 @@ def roll(sudoku):
             sudoku[i][j] = temp[j][len(sudoku[i]) - 1 - i]
 
 def apply_varitiations(sudoku):
+    # Generate all possible pairs of numbers for this sudoku size
+    pairs = all_pairs_of_numbers(len(sudoku))
+    # Apply swap of numbers 1 and 2, 1 and 3, 1 and 4... or not?
+    for i, apply in enumerate(random.choices([True, False], k = len(pairs))):
+        if apply:
+            print('Swaping', pairs[i][0] + 1, 'and', pairs[i][1] + 1, '...')
+            swap_numbers(sudoku, pairs[i][0] + 1, pairs[i][1] + 1)
+    # Apply swap of rows 1 and 2, 1 and 3, 1 and 4... or not?
+    for i, apply in enumerate(random.choices([True, False], k = len(pairs))):
+        if apply:
+            print('Swaping rows', pairs[i][0], 'and', pairs[i][1], '...')
+            swap_rows(sudoku, pairs[i][0], pairs[i][1])
+    # Apply swap of columns 1 and 2, 1 and 3, 1 and 4... or not?
+    for i, apply in enumerate(random.choices([True, False], k = len(pairs))):
+        if apply:
+            print('Swaping columns', pairs[i][0], 'and', pairs[i][1], '...')
+            swap_columns(sudoku, pairs[i][0], pairs[i][1])
     # Transpose or not ?
     if random.choice([True, False]):
         print('Transposing...')
@@ -85,3 +102,13 @@ def apply_varitiations(sudoku):
         print('Rolling', degrees, 'degrees...')
     for rolling_times in range(degrees // 90):
         roll(sudoku)
+
+def all_pairs_of_numbers(n):
+    pairs = []
+    numbers = set(range(n))
+
+    while len(numbers) != 0:
+        number = numbers.pop()
+        for j in numbers:
+            pairs.append((number, j))
+    return pairs
