@@ -29,7 +29,8 @@ def fill(sudoku, x = 0, y = 0):
 ### Variations
 After a sudoku is created around 5 millions other can be generated applying variations like:
 - **Swaping** numbers 
-- **Swaping** rows or columns (equivalent to flipping / mirroring)
+- **Swaping** rows or columns in the same block
+- **Swaping** horizontal or vertical blocks (mixed with row / columns swapping can be equivalent to flipping / mirroring)
 - **Transposing** the grid (matrix tranposition)
 - **Rolling** the grid (rotation of 90 degrees) (270 degrees is equivalent to apply 90 degree rotation 3 times) (180 rotation is equivalent to flipping all rows and columns)
 
