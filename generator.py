@@ -64,7 +64,7 @@ def swap_columns(sudoku, x1, x2):
 def transpose(sudoku):
     temp = [row[:] for row in sudoku] # Deep copy of sudoku
     for i in range(len(sudoku)):
-        for j in range(len(sudoku[0])):
+        for j in range(len(sudoku[i])):
             sudoku[i][j] = temp[j][i]
 
 def roll(sudoku):
@@ -74,7 +74,24 @@ def roll(sudoku):
         for j in range(len(sudoku[i])):
             sudoku[i][j] = temp[j][len(sudoku[i]) - 1 - i]
 
-def apply_varitiations(sudoku):
+def swap_horizontal_blocks(sudoku, x1, x2):
+    square_size = int(len(sudoku) ** (1/2))
+    temp = [row[:] for row in sudoku] # Deep copy of sudoku
+    for i in range(square_size):
+        for j in range(len(sudoku[i])):
+            sudoku[i + x1 * square_size][j] = temp[i + x2 * square_size][j]
+            sudoku[i + x2 * square_size][j] = temp[i + x1 * square_size][j]
+
+def swap_vertical_blocks(sudoku, y1, y2):
+    square_size = int(len(sudoku) ** (1/2))
+    temp = [row[:] for row in sudoku] # Deep copy of sudoku
+    for i in range(square_size):
+        for j in range(len(sudoku[i])):
+            sudoku[j][i + y1 * square_size] = temp[j][i + y2 * square_size]
+            sudoku[j][i + y2 * square_size] = temp[j][i + y1 * square_size]
+
+
+def apply_variations(sudoku):
     # Generate all possible pairs of numbers for this sudoku size
     pairs = all_pairs_of_numbers(len(sudoku))
     # Apply swap of numbers 1 and 2, 1 and 3, 1 and 4... or not?
@@ -82,16 +99,32 @@ def apply_varitiations(sudoku):
         if apply:
             print('Swaping', pairs[i][0] + 1, 'and', pairs[i][1] + 1, '...')
             swap_numbers(sudoku, pairs[i][0] + 1, pairs[i][1] + 1)
-    # Apply swap of rows 1 and 2, 1 and 3, 1 and 4... or not?
+    # Generate all possible pairs of numbers for this sudoku square size
+    square_size = int(len(sudoku) ** (1/2))
+    pairs = all_pairs_of_numbers(square_size)
+    # Apply swap of rows 1 and 2, 1 and 3, 4 and 5... or not?
+    for s in range(0, len(sudoku), square_size):
+        for i, apply in enumerate(random.choices([True, False], k = len(pairs))):
+            print(i + s)
+            if apply:
+                print('Swaping rows', pairs[i][0] + s, 'and', pairs[i][1] + s, '...')
+                swap_rows(sudoku, pairs[i][0] + s, pairs[i][1] + s)
+    # Apply swap of columns 1 and 2, 1 and 3, 4 and 5... or not?
+    for s in range(0, len(sudoku), square_size):
+        for i, apply in enumerate(random.choices([True, False], k = len(pairs))):
+            if apply:
+                print('Swaping columns', pairs[i][0] + s, 'and', pairs[i][1] + s, '...')
+                swap_columns(sudoku, pairs[i][0] + s, pairs[i][1] + s)
+    # Apply swap of horizontal blocks 1 and 2, 1 and 3, 2 and 3... or not?    
     for i, apply in enumerate(random.choices([True, False], k = len(pairs))):
         if apply:
-            print('Swaping rows', pairs[i][0], 'and', pairs[i][1], '...')
-            swap_rows(sudoku, pairs[i][0], pairs[i][1])
-    # Apply swap of columns 1 and 2, 1 and 3, 1 and 4... or not?
+            print('Swaping horizontal blocks', pairs[i][0], 'and', pairs[i][1], '...')
+            swap_horizontal_blocks(sudoku, pairs[i][0], pairs[i][1])
+    # Apply swap of vertical blocks 1 and 2, 1 and 3, 2 and 3... or not?
     for i, apply in enumerate(random.choices([True, False], k = len(pairs))):
         if apply:
-            print('Swaping columns', pairs[i][0], 'and', pairs[i][1], '...')
-            swap_columns(sudoku, pairs[i][0], pairs[i][1])
+            print('Swaping vertical blocks', pairs[i][0], 'and', pairs[i][1], '...')
+            swap_vertical_blocks(sudoku, pairs[i][0], pairs[i][1])
     # Transpose or not ?
     if random.choice([True, False]):
         print('Transposing...')
