@@ -12,8 +12,8 @@ def validate(sudoku):
     
     # Square validation
     square_size = int(len(sudoku) ** (1/2))
-    for n in range(0, len(sudoku) - 2, square_size):
-        for m in range(0, len(sudoku) - 2, square_size):
+    for n in range(0, len(sudoku), square_size):
+        for m in range(0, len(sudoku), square_size):
             square = []
             for i in range(square_size):
                 for j in range(square_size):
