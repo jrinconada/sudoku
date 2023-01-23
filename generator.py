@@ -61,19 +61,6 @@ def swap_columns(sudoku, x1, x2):
         sudoku[y][x1] = sudoku[y][x2]
         sudoku[y][x2] = column1
 
-def transpose(sudoku):
-    temp = [row[:] for row in sudoku] # Deep copy of sudoku
-    for i in range(len(sudoku)):
-        for j in range(len(sudoku[i])):
-            sudoku[i][j] = temp[j][i]
-
-def roll(sudoku):
-    """Counterclockwise 90º rotation"""
-    temp = [row[:] for row in sudoku] # Deep copy of sudoku
-    for i in range(len(sudoku)):
-        for j in range(len(sudoku[i])):
-            sudoku[i][j] = temp[j][len(sudoku[i]) - 1 - i]
-
 def swap_horizontal_blocks(sudoku, x1, x2):
     square_size = int(len(sudoku) ** (1/2))
     temp = [row[:] for row in sudoku] # Deep copy of sudoku
@@ -90,6 +77,18 @@ def swap_vertical_blocks(sudoku, y1, y2):
             sudoku[j][i + y1 * square_size] = temp[j][i + y2 * square_size]
             sudoku[j][i + y2 * square_size] = temp[j][i + y1 * square_size]
 
+def transpose(sudoku):
+    temp = [row[:] for row in sudoku] # Deep copy of sudoku
+    for i in range(len(sudoku)):
+        for j in range(len(sudoku[i])):
+            sudoku[i][j] = temp[j][i]
+
+def roll(sudoku):
+    """Counterclockwise 90º rotation"""
+    temp = [row[:] for row in sudoku] # Deep copy of sudoku
+    for i in range(len(sudoku)):
+        for j in range(len(sudoku[i])):
+            sudoku[i][j] = temp[j][len(sudoku[i]) - 1 - i]
 
 def apply_variations(sudoku):
     # Generate all possible pairs of numbers for this sudoku size
